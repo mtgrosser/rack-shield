@@ -19,6 +19,7 @@ module Rack
       '/appsuite/signin',
       '/aspera/faspex',
       '/aspnet-ajax/',
+      '/.astro/',
       '/axis2/axis2-admin',
       '/bakula-web',
       '/boaform/',
@@ -32,6 +33,7 @@ module Rack
       '/(download)/',
       '/downloadMainLog',
       '/drupal.js',
+      '/env.d.ts',
       'etc/passwd',
       '/faspex/',
       'ftpsync.settings',
@@ -74,6 +76,7 @@ module Rack
       '/RELEASE_NOTES.txt',
       '/remote/logincheck',
       '/rest/applinks/',
+      '/runtime~main.js',
       '/SaveUploadedHotspotLogoFile',
       '/SDK/webLanguage',
       '/seeyon/htmlofficeservlet',
@@ -82,10 +85,13 @@ module Rack
       '/snort/',
       '/solr/admin/',
       'sqlbuddy',
+      '/.ssh/',
       '/stalker_portal/',
       '/telescope/requests',
+      '/teorema505',
       '/tkset/',
       '/UploadServlet',
+      '/@vite/',
       '/varien/js.js',
       '/VisionHubWebApi/',
       '/WEB-INF/',
@@ -101,13 +107,14 @@ module Rack
       /\A\/old-wp/,
       /\A\/(wordpress|wp)(\/|\z)/,
       /Open-Xchange/i]
-    
+
     DEFAULT_QUERIES = [
       /SELECT.+FROM.+/i,
       /SELECT.+COUNT/i,
       /SELECT.+UNION/i,
       /UNION.+SELECT/i,
       /INFORMATION_SCHEMA/i,
+      /phpcredits/,
       '--%20',
       '-- ',
       '%2Fscript%3E',
@@ -120,11 +127,16 @@ module Rack
       'HelloThinkCMF',
       'XDEBUG_SESSION_START'
     ]
-    
+
     DEFAULT_BODIES = [
       'OKMLlKlV',
       'DBMS_PIPE.RECEIVE_MESSAGE',
+      'encodeURIComponent(',
+      '.execSync(',
       /eth_getWork/,
+      'mainModule.require',
+      'node:child_process',
+      'Object.assign(',
       /SELECT.+FROM.+/i,
       /SELECT.+COUNT/i,
       /SELECT.+UNION/i,
@@ -132,10 +144,17 @@ module Rack
       /INFORMATION_SCHEMA/i,
       /WAITFOR DELAY/i,
       /FROM PG_SLEEP/i,
+      'String.fromCharCode',
+      '/tmp/xd.sh',
+      '.toString()',
+      '/xmrig',
       /CHR\(\d+\)/i,
       /UNION.+SELECT/i
     ]
-    
+
+    DEFAULT_CHECKS = [
+    ]
+
     class << self
 
       attr_accessor :paths, :queries, :bodies, :checks, :responder
@@ -181,7 +200,7 @@ module Rack
     self.paths     = DEFAULT_PATHS.dup
     self.queries   = DEFAULT_QUERIES.dup
     self.bodies    = DEFAULT_BODIES.dup
-    self.checks    = []
+    self.checks    = DEFAULT_CHECKS.dup
     self.responder = Responder
 
   end
